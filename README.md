@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# HYUN-PORTFOLIO 웹사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개
+본 프로젝트는 웹 퍼블리셔 및 프론트엔드 개발자로서의 역량을 보여주기 위한 포트폴리오용 웹사이트 입니다.
+우주공간 컨셉을 기반으로 디자인한 웹사이트로, 배경화면 및 아이콘, 폰트 등 디테일적인 요소들을 컨셉화하였습니다.
+다양한 기능과 애니메이션을 통해 사용성 높은 사이트를 구현하였습니다.
 
-## Available Scripts
+1. 제작에 사용된 스킬 및 프레임워크 :  
+- **React** :  사용자 인터페이스(UI)를 구축하기 위하여 사용하였습니다. 컴포넌트 기반의 구조를 통해 UI를 효율적으로 관리하고 업데이트 하였습니다.
 
-In the project directory, you can run:
+2. 플러그인 :  
+> **Framer animation** : 페이지 내 스크롤 및 인터랙션에 따라 부드러운 애니메이션을 추가하여 시각적 효과를 극대화했습니다
 
-### `npm start`
+> **Fontawesome** : 아이콘을 활용해 사용자의 시각적 요소를 추가하였습니다.
+깔끔하고 직관적인 디자인으로 사용자의 경험을 향상시켰습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+>  **canvas** : 웹 배경을 우주공간처럼 구현하기 위해 사용되었습니다. 동적인 배경 효과를 제공하여 사이트의 테마와 분위기를 강조하고, 사용자의 몰입감을 제공합니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> **scss** : 스타일 시트를 구조화하여 코드의 재사용성과 유지보수성을 높였습니다. 복잡한 레이아웃과 스타일을 효율적으로 관리할 수 있도록 하였습니다.
 
-### `npm test`
+3. 레이아웃 형식
+- Flex 기반의 레이아웃 : Flexbox를 활용하여 웹사이트 내 콘텐츠를 효율적으로 정렬하였습니다. 이를 통해 다양한 화면 크기에서도 요소들이 자동으로 배치되며, 반응형 웹을 구현할 수 있었습니다.
+-  카드 형태의 디자인 : 콘텐츠를 카드 형식으로 디자인하여 정보를 직관적으로 구분하고, 각 카드가 독립적으로 돋보일 수 있도록 했습니다. 이를 통해 사용자는 필요한 정보를 빠르게 인식하고, 사용자 경험을 향상시킵니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. 제작 참여율
+- 100% 개인프로젝트 :  배포 및 수정 프로젝트 전부를 진행하였습니다.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 주요 기능
+1. 홈 버튼
+- 지구본 모양의 아이콘으로 화면 상단고정에 위치하였습니다.
+- 사용자가 언제든 클릭하여 시작화면으로 갈 수 있게 사용자의 편의성을 구현했습니다.
+2. 메뉴 슬라이드 바
+- 사용자가 사이트 내에서 다양한 섹션으로 쉽게 이동할 수 있도록 돕는 네비게이션 메뉴를 구현했습니다.
+- 화면 상단에서 슬라이드 형태로 등장하여 클릭 시 관련 페이지나 섹션으로 바로 이동할 수 있어 사용자가 원활하게 웹사이트를 탐색할 수 있습니다.
+3. 스크롤 애니메이션
+- 크롤을 내리거나 올릴 때, 특정 요소들이 부드럽게 나타나거나 사라지도록 구현했습니다. 
+- 사용자가 스크롤을 할 때마다 중요한 콘텐츠나 인터랙티브 요소가 동적으로 나타나기 때문에 시각적으로 더 풍성한 경험을 제공합니다. 
+4. 모달 창
+- 모달창으로 강조하여 사용자의 시선이 모달 창으로 집중되게 합니다.
+- 모달 창 안에 'X'버튼을 배치하여 사용자가 창을 닫을 수 있게 합니다.
+5. 반응형 웹 지원
+- 다양한 화면 크기에서 최적화된 레이아웃을 제공하기 위해 CSS 미디어 쿼리를 사용하여 반응형 웹을 구현했습니다.
+- 데스크탑, 태블릿, 모바일 등 다양한 디바이스에서 웹사이트가 깨지지 않고 자동으로 화면에 맞게 조정했습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 디자인 스타일
+1. UI디자인 방식
+- Figma 를 기반으로 우주공간을 모티브로 컨셉에 맞는 아이콘 및 텍스트를 디자인 했습니다.
+- 반응형 웹을 구현하기 위해 테블릿 및 모바일 화면 레이아웃을 디자인했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. 색상
+- 메인 컬러(#ffffff) : '화이트'컬러를 메인으로 텍스트 및 아이콘들을 활용하여 깔끔한 이미지를 자아냅니다.
+- 포인트 컬러 (#9EFFBB) : 텍스트의 포인트 컬러로 적용하였습니다. 본 사이트의 컨셉에 맞는 컬러로, 마치 기계작동이 **'on'**이 되는 듯한 시각적인 효과를 자아냅니다.
 
-### `npm run eject`
+## 문제점 및 개선 계획
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. 단조로운 배경 : 우주 공간을 표현하는 배경을 canvas로 구현하였으나, 자유로운 애니메이션 구현에 제한이있어 동적인 배경 효과에 제약이 발생합니다.
+- 개선 방안: 좀 더 다채로운 배경과 애니메이션 효과를 지원할 수 있는 방법을 찾아 배경에 더 많은 자유도를 추가할 계획입니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. 모달 창 **배경 클릭 시** 닫기 : 현재 모달 창은 배경 외부 클릭 시 닫히지 않지만, 사용자 친화적이고 직관적인 인터페이스를 위해 모달 창 외부를 클릭하면 창이 닫히는 기능을 추가할 계획입니다.
+- 개선방안 : 사용자가 모달 창 외부(배경)를 클릭하면 모달 창이 닫힘으로써 직관적인 UI 및 사용자 친화적 기능을 구현할 계획입니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 프로젝트 접속 링크
+[HYUN-PORTFOLIO](https://jywkhs3.github.io/my-portfolio/)
