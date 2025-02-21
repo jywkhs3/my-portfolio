@@ -19,14 +19,14 @@ const Clone = () => {
                 {
                     projects.map((list)=>{
                         return <div key={list.id}>
-                        <div className='project-container'>
-                            <p>{list.title}</p>
-                            <div className='img-wrap'>
-                                <img src={list.img} alt={list.alt}/>
-                            </div> 
-                        </div>
-                    </div>
-                    })
+                                    <div className='project-container'>
+                                        <p>{list.title}</p>
+                                        <div className='img-wrap'>
+                                            <img src={list.img} alt={list.alt}/>
+                                        </div> 
+                                    </div>
+                                </div>
+                                })
                 }
             </div>
             {/* <p className='click-txt'>"Click Me!"</p> */}

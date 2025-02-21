@@ -13,6 +13,7 @@ const App = () => {
   const [isNavShow,setIsNavShow] = useState(false);
   const [isProfile,setIsProfile] = useState(false);
   const [activeProject,setActiveProject] = useState('HOME');
+  const [isModalOpen,setIsModalOpen] = useState(false);
 
   //메뉴 닫기 아이콘 클릭
   const closeNav =()=>{
@@ -37,7 +38,10 @@ const App = () => {
       setIsProfile(false);  
     }
   };
-
+  //모달 닫기
+  const handleModalClose = ()=>{
+    setIsModalOpen(false);
+  }
   return (
     <div className='app'>
       {
@@ -52,11 +56,14 @@ const App = () => {
         isProfile && 
         <Identity />
       }
-      {/* {
+      {
         isClone &&  
         <Clone/>
+      }
+      {/* {
+        isModalOpen &&
+        <ProjectModal onClose={handleModalClose} />
       } */}
-      <ProjectModal />
       <Background/>
     </div>
   );

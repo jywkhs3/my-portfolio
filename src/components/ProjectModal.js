@@ -16,15 +16,16 @@ const projectdetail= [
   {id:7, title:'MOBILE QUIZ', image: [html,css,js,react,sass], alt:'ps-logo'}
 ];
 
-const ProjectModal = () => {
+const ProjectModal = ({onClose}) => {
+
   return (
-    <div className='project-modal'>
+    <div className='modal'>
       <div className='modal-container'>
         <div className='img-container'>
-          <img />
+          {/* <img /> */}
         </div>
         <div className='txt-container'>
-          <p className='close'>X</p>
+          <p className='close' onClick={onClose}>X</p>
           <div className='txt-title'>
             {projectdetail.map((list) => (
               <h3 key={list.id}>{list.title}</h3>
