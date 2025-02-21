@@ -35,8 +35,8 @@ const Identity = () => {
             <li>“I’m a Web Publisher & Frontend Developer”</li>
             <li>Name : Jeong Hyun</li>
             <li>Birth : 1996.11.15</li>
-            <li>Mail : jywkhs3@gamil.com</li>
-            <li>"My Skill"</li>
+            <li>Mail : jywkhs3@gmail.com</li>
+            <li>"My Skill"</li> 
           </ul>
           <div className='skill-logo'>
           {

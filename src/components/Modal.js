@@ -16,8 +16,11 @@ const projectdetail= [
   {id:7, title:'MOBILE QUIZ', image: [html,css,js,react,sass], alt:'ps-logo'}
 ];
 
-const ProjectModal = ({onClose}) => {
+const Modal = ({activeProject,isModalOpen,onClose}) => {
 
+  if(!isModalOpen) return null;
+
+  const projectDetailMore = projectdetail.find((list)=>list.title === activeProject);
   return (
     <div className='modal'>
       <div className='modal-container'>
@@ -27,10 +30,15 @@ const ProjectModal = ({onClose}) => {
         <div className='txt-container'>
           <p className='close' onClick={onClose}>X</p>
           <div className='txt-title'>
-            {projectdetail.map((list) => (
+            {projectdetail
+              .filter((list)=> list.title === activeProject)
+              .map((list) => (
               <h3 key={list.id}>{list.title}</h3>
             ))}
-            {projectdetail.map((list) =>
+
+            {projectdetail
+              .filter((list)=>list.title === activeProject)
+              .map((list) =>
               list.image.map((img, index) => (
                 <img key={index} src={img} alt={list.alt} />
               ))
@@ -55,4 +63,4 @@ const ProjectModal = ({onClose}) => {
   );
 };
 
-export default ProjectModal;
+export default Modal;

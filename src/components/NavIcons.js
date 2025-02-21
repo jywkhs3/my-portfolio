@@ -7,7 +7,7 @@ const navigations = [
   {id:1, name:'START'},
   {id:2, name:'IDENTITY'},
   {id:3, name:'CLONE'},
-  {id:4, name:'PUBLIHING'},
+  {id:4, name:'PUBLISHING'},
   {id:5, name:'INTERACTIONS'}
 ];
 
