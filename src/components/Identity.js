@@ -12,15 +12,15 @@ import figma from '../assets/figma.png';
 
 const Identity = () => {
   const skills = [
-    {id:1, image: html, alt:'html-logo'},
-    {id:2, image: css, alt:'css-logo'},
-    {id:3, image: js, alt:'js-logo'},
-    {id:4, image: react, alt:'react-logo'},
-    {id:5, image: vue, alt:'vue-logo'},
-    {id:6, image: sass, alt:'sass-logo'},
-    {id:7, image: ps, alt:'ps-logo'},
-    {id:8, image: ai, alt:'ai-logo'},
-    {id:9, image: figma, alt:'figma-logo'},
+    {id:1, image: html, alt:'HTML'},
+    {id:2, image: css, alt:'CSS'},
+    {id:3, image: js, alt:'JavaScript'},
+    {id:4, image: react, alt:'React'},
+    {id:5, image: vue, alt:'Vue'},
+    {id:6, image: sass, alt:'Sass'},
+    {id:7, image: ps, alt:'Photoshop'},
+    {id:8, image: ai, alt:'Aillustor'},
+    {id:9, image: figma, alt:'Figma'},
   ];
 
   return (
@@ -41,7 +41,10 @@ const Identity = () => {
           <div className='skill-logo'>
           {
             skills.map((list)=>{
-            return <img key={list.id} src={list.image} alt={list.alt}/>
+            return <div className='skill-wrap'>
+                      <img key={list.id} src={list.image} alt={list.alt}/>
+                      <p>{list.alt}</p>
+                    </div>
           })
           }
           </div>

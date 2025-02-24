@@ -9,6 +9,15 @@ const Background = () => {
     const canvas = document.getElementById('bg-star'); //그릴 캔버스
     const ctx = canvas.getContext('2d'); //그리는 도구
     const stars = []; //별들의 배열
+    const colors =[
+      `rgba(226, 250, 254, alpha)`,
+      `rgba(211, 215, 239, alpha)`,
+      `rgba(238, 252, 254, alpha)`,
+      `rgba(255, 255, 255, alpha)`,
+      `rgba(111, 120, 150, alpha)`,
+      `rgba(160, 174, 179, alpha)`,
+      `rgba(151, 160, 173, alpha)`
+    ]
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -17,12 +26,12 @@ const Background = () => {
     //   setMousePos({x: e.clientX, y: e.clientY});
     // };
     const handleMouseDown = ()=>{ 
-      console.log('mouseee');
+      // console.log('mouseee');
       setIsMouseDown(true);
       setLastMousePos({x: mousePos.x, y: mousePos.y});
     };
     const handleMouseUp = ()=> {
-      console.log('^^');
+      // console.log('^^');
       setIsMouseDown(false);
     }
 
@@ -37,10 +46,10 @@ const Background = () => {
       constructor() {
         this.x = Math.random() * canvas.width; //가로 위치 랜덤
         this.y = Math.random() * canvas.height; //세로 위치 랜덤
-        this.size = Math.random() * 1.5+0.5; // 별 크기 랜덤
+        this.size = Math.random() * 1.5+1; // 별 크기 랜덤
         this.alpha = Math.random() * 0.5 + 0.5; //투명도 랜덤
         this.alphaSpeed = Math.random() * 0.5 + 0.5; //투명도 변화 속도
-        this.brightness = Math.random() * 0.3 + 0.7; //밝기랜덤
+        this.brightness = Math.random() * 0.5 + 0.7; //밝기랜덤
         this.speedY = Math.random() * 0.3 + 0.1; // 세로 이동 속도 랜덤
         this.direction = Math.random() > 0.5 ? 1 : -1; // 위 또는 아래로 이동 방향
         this.fadeDirection = Math.random() > 0.3 ? 1 : -1; // 별의 밝기 변화 방향
@@ -48,9 +57,10 @@ const Background = () => {
         this.scaleSpeed = Math.random() * 0.5;
         this.speedX = (Math.random() - 0.5) * 1.2; // 좌우 랜덤 속도
         this.speedY = (Math.random() - 0.5) * 1.2; // 상하 랜덤 속도
+        this.color = colors[Math.floor(Math.random() * colors.length)];
       }
       draw() {
-        const spikes = 7; // 별의 꼭짓점 개수
+        const spikes = 8; // 별의 꼭짓점 개수
         const outerRadius = this.size * 2.5; // 외부 반지름
         const innerRadius = this.size; // 내부 반지름
         // const rotation = Math.random() * Math.PI; // 랜덤 회전
@@ -69,7 +79,7 @@ const Background = () => {
           ctx.lineTo(x, y);
         }
         ctx.closePath();
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha * this.brightness})`;
+        ctx.fillStyle = this.color.replace('alpha',this.alpha*this.brightness);
         ctx.fill();
         ctx.restore(); // 이전 상태 복원
         // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 1); //별의 지름, 원형으로 만들기

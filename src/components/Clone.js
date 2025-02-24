@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import netflix from '../assets/netflix.png';
 import momentum from '../assets/momentum.png';
 import tesla from '../assets/tesla.png';
@@ -6,6 +6,21 @@ import airbnb from '../assets/airbnb.png';
 import blogweb from '../assets/blogweb.png';
 import shopping1 from '../assets/shopping1.png';
 import mobilequiz from '../assets/mobilequiz.png';
+import parallox from '../assets/parallox.png';
+import progressbar from '../assets/progressbar.png';
+import grid from '../assets/grid.png';
+import login from '../assets/netflix-login.png';
+import datecalc from '../assets/datecalc.png';
+import chart from '../assets/chart.png';
+import scrollanimation from '../assets/scrollanimation.png';
+import imageslide from '../assets/imageslide.png';
+import cardnews2 from '../assets/cardnews2.jpg';
+import cardnews1 from '../assets/cardnews1.jpg';
+import mockup from '../assets/mockup.jpg';
+import webdesign from '../assets/webdesign.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareCaretLeft, faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
+
 
 // 각 그룹별 프로젝트들
 const projects = {
@@ -17,32 +32,75 @@ const projects = {
   ],
   PUBLISHING: [
     { id: 5, title: 'BLOG', img: blogweb, alt: 'BLOG-project' },
-    { id: 6, title: 'SHOPPING', img: shopping1, alt: 'SHOPPING-project' }
+    { id: 6, title: 'SHOPPING', img: shopping1, alt: 'SHOPPING-project' },
+    { id: 7, title: 'MOBILE QUIZ', img: mobilequiz, alt: 'QUIZ-project' }
+
   ],
   INTERACTIONS: [
-    { id: 7, title: 'MOBILE QUIZ', img: mobilequiz, alt: 'QUIZ-project' }
+    {id: 8, title: 'Login' , img: login, alt: 'login' },
+    {id: 9, title: 'Chart' , img: chart, alt: 'chart' },
+    {id: 10, title: 'Datecalc' , img: datecalc, alt: 'datecalc' },
+    {id: 11, title: 'Image Slide' , img: imageslide, alt: 'imagesllide' },
+    {id: 12, title: 'Scroll Animation' , img: scrollanimation, alt: 'scroll' },
+    {id: 13, title: 'Grid' , img: grid, alt: 'grid' },
+    {id: 14, title: 'Parallox Scroll' , img: parallox, alt: 'parallox' },
+    {id: 15, title: 'ProgressBar' , img: progressbar, alt: 'progressbar' },
+    {id: 16, title: 'Web Design' , img: webdesign, alt: 'webdesign' },
+    {id: 17, title: 'Mockup' , img: mockup, alt: 'Mockup' },
+    {id: 18, title: 'Card News' , img: cardnews1, alt: 'cardnews1' },
+    {id: 19, title: 'Card News' , img: cardnews2, alt: 'cardnews2' }
   ]
 };
 
 const Clone = ({ activeTitle, onProjectClick }) => {
-  // activeTitle에 맞는 프로젝트만 필터링
+  // activeTitle에 맞는 프로젝트 필터링 함수
   const filteredProjects = projects[activeTitle] || [];
+  const [currentIndex,setCurrentIndex] = useState(0);
+  const totalProjectMove = filteredProjects.length;
+
+  const handleSlide =(direction)=>{
+    if(activeTitle === 'INTERACTIONS'){
+      const projectMove = 4;
+
+      let newIndex = direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
+
+      if (newIndex < 0) {
+        newIndex = totalProjectMove - (totalProjectMove % projectMove || projectMove);
+      }
+      else if (newIndex >= totalProjectMove){
+          newIndex=0;
+        }
+      // else setCurrentIndex(newIndex);
+      setCurrentIndex(newIndex);
+    }
+  }
 
   return (
     <div className="clone">
       <h2>{activeTitle}</h2>
-      <div className="project-container">
-        {filteredProjects.map((list) => (
-          <div key={list.id} onClick={() => onProjectClick(list.title)}>
-            <div className="project-item">
+      <div className="project-container"
+      // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
+              style={{
+                transform: `translateX(-${currentIndex * 25}vw)`, // 현재 슬라이드 인덱스에 맞춰 이동
+                justifyContent : totalProjectMove < 4 ? 'center' : 'flex-start'
+              }}>
+        {filteredProjects.map((list,index) => (
+          <div className='project-item' 
+            key={list.id} onClick={() => onProjectClick(list.title,list.img)}>
               <p>{list.title}</p>
               <div className="img-wrap">
-                <img src={list.img} alt={list.alt} />
+                <img src={list.img} alt={list.alt}
+                  className={activeTitle === 'INTERACTIONS' ? `slide-${index === currentIndex ? 'active' : 'inactive'}` : ''}/>
               </div>
-            </div>
           </div>
         ))}
       </div>
+      {activeTitle === 'INTERACTIONS' && (
+          <div className="slider-nav">
+            <FontAwesomeIcon onClick={()=>handleSlide('prev')}icon={faSquareCaretLeft} className='prev'/>
+            <FontAwesomeIcon onClick={()=>handleSlide('next')}icon={faSquareCaretRight} className='next'/>
+          </div>
+        )}
     </div>
   );
 };

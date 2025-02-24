@@ -11,15 +11,9 @@ const App = () => {
   const [isNavShow, setIsNavShow] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeTitle, setActiveTitle] = useState("CLONE"); // 기본값 'CLONE'
-
-  const navigations = [
-    { id: 1, name: 'START' },
-    { id: 2, name: 'IDENTITY' },
-    { id: 3, name: 'CLONE' },
-    { id: 4, name: 'PUBLISHING' },
-    { id: 5, name: 'INTERACTIONS' }
-  ];
+  const [activeTitle, setActiveTitle] = useState("START"); // 기본값 'CLONE'
+  const [selectedImage,setSelectedImage] = useState(null);
+  console.log(selectedImage);
 
   // 메뉴 닫기 아이콘 클릭
   const closeNav = () => {
@@ -34,9 +28,10 @@ const App = () => {
   };
 
   // 프로젝트 클릭 시 모달 열기
-  const handleModalOpen = (projectTitle) => {
+  const handleModalOpen = (projectTitle,projectImage) => {
     setActiveProject(projectTitle);
     setIsModalOpen(true);
+    setSelectedImage(projectImage);
   };
 
   // 모달 닫기
@@ -68,6 +63,7 @@ const App = () => {
           activeProject={activeProject}
           isModalOpen={isModalOpen}
           onClose={handleModalClose}
+          selectedImage={selectedImage}
         />
       )}
       <Background />
