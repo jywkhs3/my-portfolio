@@ -102,6 +102,7 @@
         // transform: translateX(-50%);
         display: flex;
         gap: 2rem;
+        padding-bottom: 1rem;
         button{
           @include button-style;
           opacity: 0.5;
