@@ -36,25 +36,46 @@ const projects = {
     { id: 7, title: 'MOBILE QUIZ', img: mobilequiz, alt: 'QUIZ-project' }
 
   ],
-  INTERACTIONS: [
-    {id: 8, title: 'Login' , img: login, alt: 'login' },
-    {id: 9, title: 'Chart' , img: chart, alt: 'chart' },
-    {id: 10, title: 'Datecalc' , img: datecalc, alt: 'datecalc' },
-    {id: 11, title: 'Image Slide' , img: imageslide, alt: 'imagesllide' },
-    {id: 12, title: 'Scroll Animation' , img: scrollanimation, alt: 'scroll' },
-    {id: 13, title: 'Grid' , img: grid, alt: 'grid' },
-    {id: 14, title: 'Parallox Scroll' , img: parallox, alt: 'parallox' },
-    {id: 15, title: 'ProgressBar' , img: progressbar, alt: 'progressbar' },
-    {id: 16, title: 'Web Design' , img: webdesign, alt: 'webdesign' },
-    {id: 17, title: 'Mockup' , img: mockup, alt: 'Mockup' },
-    {id: 18, title: 'Card News' , img: cardnews1, alt: 'cardnews1' },
-    {id: 19, title: 'Card News' , img: cardnews2, alt: 'cardnews2' }
-  ]
+  INTERACTIONS: {
+    ALL: [
+      { id: 8, title: 'Login', img: login, alt: 'login' },
+      { id: 9, title: 'Chart', img: chart, alt: 'chart' },
+      { id: 10, title: 'Datecalc', img: datecalc, alt: 'datecalc' },
+      { id: 11, title: 'Image Slide', img: imageslide, alt: 'imageslide' },
+      { id: 12, title: 'Scroll Animation', img: scrollanimation, alt: 'scroll' },
+      { id: 13, title: 'Grid', img: grid, alt: 'grid' },
+      { id: 14, title: 'Parallox Scroll', img: parallox, alt: 'parallox' },
+      { id: 15, title: 'ProgressBar', img: progressbar, alt: 'progressbar' },
+      { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
+      { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
+      { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
+      { id: 19, title: 'Card News', img: cardnews2, alt: 'cardnews2' }
+    ],
+    JAVASCRIPT: [
+      { id: 8, title: 'Login', img: login, alt: 'login' },
+      { id: 9, title: 'Chart', img: chart, alt: 'chart' },
+      { id: 10, title: 'Datecalc', img: datecalc, alt: 'datecalc' },
+      { id: 11, title: 'Image Slide', img: imageslide, alt: 'imageslide' }
+    ],
+    ANIMATION: [
+      { id: 12, title: 'Scroll Animation', img: scrollanimation, alt: 'scroll' },
+      { id: 13, title: 'Grid', img: grid, alt: 'grid' },
+      { id: 14, title: 'Parallox Scroll', img: parallox, alt: 'parallox' },
+      { id: 15, title: 'ProgressBar', img: progressbar, alt: 'progressbar' }
+    ],
+    UXUIDESIGN: [
+      { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
+      { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
+      { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
+      { id: 19, title: 'Card News', img: cardnews2, alt: 'cardnews2' }
+    ]
+  }
 };
 
-const Clone = ({ activeTitle, onProjectClick }) => {
+const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) => {
   // activeTitle에 맞는 프로젝트 필터링 함수
-  const filteredProjects = projects[activeTitle] || [];
+  // const filteredProjects = projects[activeTitle] || [];
+  const filteredProjects = projects.INTERACTIONS[activeCategory] || [];
   const [currentIndex,setCurrentIndex] = useState(0);
   const [projectMove,setProjectMove] = useState(4);
 
@@ -98,6 +119,15 @@ const Clone = ({ activeTitle, onProjectClick }) => {
   return (
     <div className="clone">
       <h2>{activeTitle}</h2>
+      {
+        activeTitle === 'INTERACTIONS' && (
+        <div className='Interactions-nav'>
+          <button onClick={() => onCategoryChange('ALL')}>All</button>
+          <button onClick={() => onCategoryChange('JAVASCRIPT')}>JavaScript</button>
+          <button onClick={() => onCategoryChange('ANIMATION')}>Animation</button>
+          <button onClick={() => onCategoryChange('UXUIDESIGN')}>UX/UIDesign</button>      
+        </div>
+      )}
       <div className='project-container'
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{

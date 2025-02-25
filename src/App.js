@@ -13,6 +13,7 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("START"); // 기본값 'CLONE'
   const [selectedImage,setSelectedImage] = useState(null);
+  const [activeCategory,setActiveCategory] = useState('All');
   // console.log(selectedImage);
 
   // 메뉴 닫기 아이콘 클릭
@@ -38,6 +39,10 @@ const App = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+  //Interactions카테고리
+  const handleCategory = (category)=>{
+    setActiveCategory(category);
+  }
 
   return (
     <div className="app">
@@ -56,7 +61,7 @@ const App = () => {
         <Clone activeTitle={activeTitle} onProjectClick={handleModalOpen} />
       )}
       {activeTitle === 'INTERACTIONS' && (
-        <Clone activeTitle={activeTitle} onProjectClick={handleModalOpen} />
+        <Clone onCategoryChange={handleCategory} activeCategory={activeCategory} activeTitle={activeTitle} onProjectClick={handleModalOpen} />
       )}
       {isModalOpen && (
         <Modal

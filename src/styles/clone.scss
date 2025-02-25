@@ -34,12 +34,12 @@
             width: calc(100%/4);
             // max-width: 25vw;
             // width: 25vw;
-            // min-width: 25vw;
+            min-width: calc(100%/4);
             display: flex;
             flex-direction: column;
             align-items: center;
             @include responsive($breakpoint-xlarge){
-                width: 100%;
+                width: calc(100%/4);
             }
             @include responsive($breakpoint-large){
                 width: calc(100%/3);
