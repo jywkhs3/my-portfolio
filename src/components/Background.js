@@ -60,7 +60,7 @@ const Background = () => {
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
       draw() {
-        const spikes = 8; // 별의 꼭짓점 개수
+        const spikes = 9; // 별의 꼭짓점 개수
         const outerRadius = this.size * 2.5; // 외부 반지름
         const innerRadius = this.size; // 내부 반지름
         // const rotation = Math.random() * Math.PI; // 랜덤 회전

@@ -50,8 +50,8 @@ const projectdetail= [
   {
     id:8, title:'Login', image: [html,sass,js,react], 
     desc: ['#아이디,비밀번호 입력 검증', '#오류 메시지 표시', '#X버튼 인터렉션 구현', '#UX최적화'], alt:['HTML','Sass','JavaScript','React'],
-    sitelink: '',
-    githublink: ''  },
+    sitelink: 'https://jywkhs3.github.io/netflix_clone/login',
+    githublink: 'https://github.com/jywkhs3/netflix_clone/blob/main/src/components/Login.js'  },
   {
     id:9, title:'Chart', image: [html,sass,js,vue], 
     desc: ['#차트 데이터 시각화', '#동적 데이터 연동', '#ref, watch 활용'], alt:['HTML','Sass','JavaScript','Vue'],

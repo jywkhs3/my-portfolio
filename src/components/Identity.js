@@ -29,6 +29,7 @@ const Identity = () => {
       <div className='profile-container'>
         <div className='profile-wrap'>
           <img className='profile' src={profile} alt='profile'/>
+          <p>"Hello !"</p>
         </div>
         <div className='text-wrap'>
           <ul>

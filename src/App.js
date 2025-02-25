@@ -13,7 +13,7 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("START"); // 기본값 'CLONE'
   const [selectedImage,setSelectedImage] = useState(null);
-  console.log(selectedImage);
+  // console.log(selectedImage);
 
   // 메뉴 닫기 아이콘 클릭
   const closeNav = () => {

@@ -9,4 +9,14 @@ h1{
   text-align: center;
   font-size: $title-font-size;
   color: $text-color;
+  @include responsive($breakpoint-large){
+    font-size: 9rem;
+    }
+  @include responsive($breakpoint-medium){
+    font-size: $subtitle-font-size;
+  }
+  @include responsive($breakpoint-small){
+    font-size: 4rem;
+  }
 }
+

@@ -6,17 +6,51 @@
     h2{
         font-size: $subtitle-font-size;
         text-align: center;
+        @include responsive($breakpoint-medium){
+            font-size: 4rem;
+        }
+        @include responsive($breakpoint-small){
+            font-size: 3rem;
+        }
     }
     .project-container{
         display: flex;
         align-items: flex-start;
         transition: transform 0.5s ease-in-out;
+        gap: 1rem;
+        @include responsive($breakpoint-medium){
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 1.5rem;
+        }
+        @include responsive($breakpoint-small){
+            gap: 1rem;
+        }
+        &.nowrap{
+            display: flex;
+            flex-wrap: nowrap;
+        }
         .project-item{
-            width: 25vw;
-            min-width: 25vw;
+            width: calc(100%/4);
+            // max-width: 25vw;
+            // width: 25vw;
+            // min-width: 25vw;
             display: flex;
             flex-direction: column;
             align-items: center;
+            @include responsive($breakpoint-xlarge){
+                width: 100%;
+            }
+            @include responsive($breakpoint-large){
+                width: calc(100%/3);
+            }
+            @include responsive($breakpoint-medium){
+                // width: 50vw;
+                width: calc(100%/2);
+            }
+            @include responsive($breakpoint-small){
+                width: 100%;
+            }
             &:hover{
                 color: $text-point-color;
                 img{
@@ -26,12 +60,22 @@
             }
             p{
                 font-size: 3rem;
+                @include responsive ($breakpoint-xlarge){
+                    font-size: 2.5rem;
+                }
+                @include responsive ($breakpoint-large){
+                    font-size: 2rem;
+                }
             }
             .img-wrap{
                 width: 400px;
                 height: 400px;
                 border: 1px solid #fff;
                 border-radius: 10px;
+                @include responsive($breakpoint-large){
+                    width: 300px;
+                    height: 300px;
+                }
                 img{
                     border-radius: 10px;
                     width: 100%;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import netflix from '../assets/netflix.png';
 import momentum from '../assets/momentum.png';
 import tesla from '../assets/tesla.png';
@@ -56,13 +56,33 @@ const Clone = ({ activeTitle, onProjectClick }) => {
   // activeTitle에 맞는 프로젝트 필터링 함수
   const filteredProjects = projects[activeTitle] || [];
   const [currentIndex,setCurrentIndex] = useState(0);
-  const totalProjectMove = filteredProjects.length;
+  const [projectMove,setProjectMove] = useState(4);
 
+  useEffect(()=>{
+    const updateSlideMove =()=>{
+      let newProjectMove = 4;
+      if (window.innerWidth <= 500) setProjectMove(1);
+      else if(window.innerWidth <= 768) setProjectMove(2);
+      else if(window.innerWidth <= 1024) setProjectMove(3);
+      else setProjectMove(4);
+
+      setProjectMove(newProjectMove);
+    };
+
+    updateSlideMove();
+    window.addEventListener('resize' , updateSlideMove);
+    return ()=> 
+      {window.removeEventListener('resize', updateSlideMove)};
+  },[]);
+
+  const totalProjectMove = filteredProjects.length;
+  
   const handleSlide =(direction)=>{
     if(activeTitle === 'INTERACTIONS'){
-      const projectMove = 4;
+      // const projectMove = 4;
 
-      let newIndex = direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
+      let newIndex = 
+        direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
 
       if (newIndex < 0) {
         newIndex = totalProjectMove - (totalProjectMove % projectMove || projectMove);
@@ -78,11 +98,12 @@ const Clone = ({ activeTitle, onProjectClick }) => {
   return (
     <div className="clone">
       <h2>{activeTitle}</h2>
-      <div className="project-container"
+      <div className='project-container'
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
-                transform: `translateX(-${currentIndex * 25}vw)`, // 현재 슬라이드 인덱스에 맞춰 이동
-                justifyContent : totalProjectMove < 4 ? 'center' : 'flex-start'
+                transform: `translateX(-${currentIndex * (100/projectMove)}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
+                justifyContent : totalProjectMove < 4 ? 'center' : 'flex-start',
+                flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : 'wrap'
               }}>
         {filteredProjects.map((list,index) => (
           <div className='project-item' 
