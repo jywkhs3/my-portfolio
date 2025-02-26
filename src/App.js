@@ -13,7 +13,7 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("START"); // 기본값 'CLONE'
   const [selectedImage,setSelectedImage] = useState(null);
-  const [activeCategory,setActiveCategory] = useState('All');
+  const [activeCategory,setActiveCategory] = useState('ALL');
   // console.log(selectedImage);
 
   // 메뉴 닫기 아이콘 클릭
@@ -41,6 +41,7 @@ const App = () => {
   };
   //Interactions카테고리
   const handleCategory = (category)=>{
+    console.log("Changing category to:", category);
     setActiveCategory(category);
   }
 

@@ -20,6 +20,7 @@
         gap: 1rem;
         @include responsive($breakpoint-medium){
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             padding-top: 1.5rem;
         }
@@ -33,11 +34,13 @@
         .project-item{
             width: calc(100%/4);
             // max-width: 25vw;
-            // width: 25vw;
-            min-width: calc(100%/4);
+            width: 25vw;
+            // min-width: calc(100%/4);
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            cursor: pointer;
             @include responsive($breakpoint-xlarge){
                 width: calc(100%/4);
             }
@@ -46,7 +49,7 @@
             }
             @include responsive($breakpoint-medium){
                 // width: 50vw;
-                width: calc(100%/2);
+                width: calc(100%/2.4);
             }
             @include responsive($breakpoint-small){
                 width: 100%;
@@ -58,7 +61,10 @@
                     opacity: 0.5;
                 }
             }
-            p{
+            &:hover .read{
+                opacity: 1;
+            }
+            .title{
                 font-size: 3rem;
                 @include responsive ($breakpoint-xlarge){
                     font-size: 2.5rem;
@@ -83,7 +89,18 @@
                     object-fit: cover;
                 }
             }
+            .read{
+                color: $text-color;
+                position: absolute;
+                font-size: 1.3rem;
+                text-decoration: underline;
+                top: 60%;
+                transform: translateY(-60%);
+                opacity: 0;
+
+            }
         }
+
     }
     .slider-nav{
         width: 100%;

@@ -74,8 +74,17 @@ const projects = {
 
 const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) => {
   // activeTitle에 맞는 프로젝트 필터링 함수
-  // const filteredProjects = projects[activeTitle] || [];
-  const filteredProjects = projects.INTERACTIONS[activeCategory] || [];
+  // const filteredProjects = projects[activeTitle] || projects.INTERACTIONS[activeCategory] || [];
+  let filteredProjects = [];
+// 1. activeTitle이 CLONE 또는 PUBLISHING이면 해당 배열을 가져오기
+if (activeTitle === "CLONE" || activeTitle === "PUBLISHING") {
+  filteredProjects = projects[activeTitle] || [];
+} 
+// 2. activeTitle이 INTERACTIONS이면, activeCategory에 맞는 배열 가져오기
+else if (activeTitle === "INTERACTIONS") {
+  filteredProjects = projects.INTERACTIONS[activeCategory] || [];
+}
+
   const [currentIndex,setCurrentIndex] = useState(0);
   const [projectMove,setProjectMove] = useState(4);
 
@@ -100,8 +109,6 @@ const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) 
   
   const handleSlide =(direction)=>{
     if(activeTitle === 'INTERACTIONS'){
-      // const projectMove = 4;
-
       let newIndex = 
         direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
 
@@ -132,19 +139,25 @@ const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) 
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
                 transform: `translateX(-${currentIndex * (100/projectMove)}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
-                justifyContent : totalProjectMove < 4 ? 'center' : 'flex-start',
-                flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : 'wrap'
+                justifyContent : totalProjectMove <= 4 ? 'center' : 'flex-start',
+                // flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : ''
               }}>
-        {filteredProjects.map((list,index) => (
+        {
+        filteredProjects.length > 0 ?(
+        filteredProjects.map((list,index) => (
           <div className='project-item' 
             key={list.id} onClick={() => onProjectClick(list.title,list.img)}>
-              <p>{list.title}</p>
+              <p className='title'>{list.title}</p>
               <div className="img-wrap">
                 <img src={list.img} alt={list.alt}
                   className={activeTitle === 'INTERACTIONS' ? `slide-${index === currentIndex ? 'active' : 'inactive'}` : ''}/>
               </div>
+              <p className='read'>Read more!</p>
           </div>
-        ))}
+        ))
+      ):(
+        <p>Loading...</p>
+      )}
       </div>
       {activeTitle === 'INTERACTIONS' && (
           <div className="slider-nav">
