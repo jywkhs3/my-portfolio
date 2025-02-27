@@ -41,7 +41,7 @@ const App = () => {
   };
   //Interactions카테고리
   const handleCategory = (category)=>{
-    console.log("Changing category to:", category);
+    // console.log("Changing category to:", category);
     setActiveCategory(category);
   }
 

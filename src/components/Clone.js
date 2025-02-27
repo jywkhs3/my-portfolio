@@ -73,30 +73,32 @@ const projects = {
 };
 
 const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) => {
-  // activeTitle에 맞는 프로젝트 필터링 함수
   // const filteredProjects = projects[activeTitle] || projects.INTERACTIONS[activeCategory] || [];
   let filteredProjects = [];
-// 1. activeTitle이 CLONE 또는 PUBLISHING이면 해당 배열을 가져오기
+//activeTitle에 맞는 CLONE 또는 PUBLISHING배열 가져오기
 if (activeTitle === "CLONE" || activeTitle === "PUBLISHING") {
+    // activeTitle에 맞는 프로젝트 필터링 함수
   filteredProjects = projects[activeTitle] || [];
 } 
-// 2. activeTitle이 INTERACTIONS이면, activeCategory에 맞는 배열 가져오기
+//activeTitle의 INTERACTIONS이면, activeCategory에 맞는 배열 가져오기
 else if (activeTitle === "INTERACTIONS") {
   filteredProjects = projects.INTERACTIONS[activeCategory] || [];
 }
 
   const [currentIndex,setCurrentIndex] = useState(0);
   const [projectMove,setProjectMove] = useState(4);
+  const [slideWidth,setSlideWidth] = useState(100/projectMove);
 
   useEffect(()=>{
     const updateSlideMove =()=>{
       let newProjectMove = 4;
-      if (window.innerWidth <= 500) setProjectMove(1);
-      else if(window.innerWidth <= 768) setProjectMove(2);
-      else if(window.innerWidth <= 1024) setProjectMove(3);
-      else setProjectMove(4);
+      if (window.innerWidth <= 500) newProjectMove =1;
+      else if(window.innerWidth <= 768) newProjectMove=2;
+      else if(window.innerWidth <= 1024) newProjectMove=3;
+      else newProjectMove=4;
 
       setProjectMove(newProjectMove);
+      setSlideWidth(100 / newProjectMove);
     };
 
     updateSlideMove();
@@ -124,23 +126,37 @@ else if (activeTitle === "INTERACTIONS") {
   }
 
   return (
-    <div className="clone">
+    // <div className={`clone ${activeTitle === 'INTERACTIONS' ? 'interactions':''}`} >
+    <div className='clone'> 
       <h2>{activeTitle}</h2>
       {
         activeTitle === 'INTERACTIONS' && (
-        <div className='Interactions-nav'>
-          <button onClick={() => onCategoryChange('ALL')}>All</button>
-          <button onClick={() => onCategoryChange('JAVASCRIPT')}>JavaScript</button>
-          <button onClick={() => onCategoryChange('ANIMATION')}>Animation</button>
-          <button onClick={() => onCategoryChange('UXUIDESIGN')}>UX/UIDesign</button>      
+        <div className='interactions-nav'>
+          <span onClick={() => onCategoryChange('ALL')}
+            className={activeCategory === 'ALL' ? 'on':''}>
+            All
+          </span>
+          <span onClick={() => onCategoryChange('JAVASCRIPT')}
+            className={activeCategory === 'JAVASCRIPT' ? 'on':''}>
+            JavaScript
+          </span>
+          <span onClick={() => onCategoryChange('ANIMATION')}
+            className={activeCategory === 'ANIMATION' ? 'on':''}>
+            Animation
+          </span>
+          <span onClick={() => onCategoryChange('UXUIDESIGN')}
+            className={activeCategory === 'UXUIDESIGN' ? 'on':''}>
+            UX/UIDesign
+          </span>      
         </div>
       )}
-      <div className='project-container'
+      <div className={`project-container ${activeCategory === 'ALL' ? 'all-category' : ''}`}
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
                 transform: `translateX(-${currentIndex * (100/projectMove)}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
                 justifyContent : totalProjectMove <= 4 ? 'center' : 'flex-start',
                 // flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : ''
+                flexWrap: activeCategory === 'ALL' ? 'nowrap' : 'wrap'
               }}>
         {
         filteredProjects.length > 0 ?(
@@ -159,7 +175,7 @@ else if (activeTitle === "INTERACTIONS") {
         <p>Loading...</p>
       )}
       </div>
-      {activeTitle === 'INTERACTIONS' && (
+      {activeTitle === 'INTERACTIONS' && activeCategory === 'ALL' && (
           <div className="slider-nav">
             <FontAwesomeIcon onClick={()=>handleSlide('prev')}icon={faSquareCaretLeft} className='prev'/>
             <FontAwesomeIcon onClick={()=>handleSlide('next')}icon={faSquareCaretRight} className='next'/>
