@@ -8,6 +8,7 @@ import shopping1 from '../assets/shopping1.png';
 import mobilequiz from '../assets/mobilequiz.png';
 import parallox from '../assets/parallox.png';
 import progressbar from '../assets/progressbar.png';
+import mbtibar from '../assets/progress-bar.png';
 import grid from '../assets/grid.png';
 import login from '../assets/netflix-login.png';
 import datecalc from '../assets/datecalc.png';
@@ -45,7 +46,7 @@ const projects = {
       { id: 12, title: 'Scroll Animation', img: scrollanimation, alt: 'scroll' },
       { id: 13, title: 'Grid', img: grid, alt: 'grid' },
       { id: 14, title: 'Parallox Scroll', img: parallox, alt: 'parallox' },
-      { id: 15, title: 'ProgressBar', img: progressbar, alt: 'progressbar' },
+      { id: 15, title: 'ProgressBar', img: mbtibar, alt: 'progressbar' },
       { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
       { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
       { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
@@ -61,13 +62,13 @@ const projects = {
       { id: 12, title: 'Scroll Animation', img: scrollanimation, alt: 'scroll' },
       { id: 13, title: 'Grid', img: grid, alt: 'grid' },
       { id: 14, title: 'Parallox Scroll', img: parallox, alt: 'parallox' },
-      { id: 15, title: 'ProgressBar', img: progressbar, alt: 'progressbar' }
+      { id: 15, title: 'ProgressBar', img: mbtibar, alt: 'progressbar' }
     ],
     UXUIDESIGN: [
       { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
       { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
-      { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
-      { id: 19, title: 'Card News', img: cardnews2, alt: 'cardnews2' }
+      { id: 18, title: 'Card News1', img: cardnews1, alt: 'cardnews1' },
+      { id: 19, title: 'Card News2', img: cardnews2, alt: 'cardnews2' }
     ]
   }
 };
@@ -92,13 +93,16 @@ else if (activeTitle === "INTERACTIONS") {
   useEffect(()=>{
     const updateSlideMove =()=>{
       let newProjectMove = 4;
-      if (window.innerWidth <= 500) newProjectMove =1;
-      else if(window.innerWidth <= 768) newProjectMove=2;
-      else if(window.innerWidth <= 1024) newProjectMove=3;
+      const clientWidth = document.documentElement.clientWidth;
+      // console.log(clientWidth);
+      if ( clientWidth <= 500) newProjectMove =1;
+      else if(clientWidth <= 768) newProjectMove=2;
+      else if(clientWidth <= 1024) newProjectMove=3;
       else newProjectMove=4;
 
       setProjectMove(newProjectMove);
       setSlideWidth(100 / newProjectMove);
+      // console.log(slideWidth,100/newProjectMove);
     };
 
     updateSlideMove();
@@ -107,13 +111,16 @@ else if (activeTitle === "INTERACTIONS") {
       {window.removeEventListener('resize', updateSlideMove)};
   },[]);
 
+  useEffect(()=>{
+    setCurrentIndex(0);
+  },[activeCategory]);
   const totalProjectMove = filteredProjects.length;
   
   const handleSlide =(direction)=>{
     if(activeTitle === 'INTERACTIONS'){
       let newIndex = 
         direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
-
+        console.log(currentIndex);
       if (newIndex < 0) {
         newIndex = totalProjectMove - (totalProjectMove % projectMove || projectMove);
       }
@@ -150,7 +157,7 @@ else if (activeTitle === "INTERACTIONS") {
           </span>      
         </div>
       )}
-      <div className={`project-container ${activeCategory === 'ALL' ? 'all-category' : ''}`}
+      <div className='project-container'
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
                 transform: `translateX(-${currentIndex * (100/projectMove)}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
@@ -162,7 +169,8 @@ else if (activeTitle === "INTERACTIONS") {
         filteredProjects.length > 0 ?(
         filteredProjects.map((list,index) => (
           <div className='project-item' 
-            key={list.id} onClick={() => onProjectClick(list.title,list.img)}>
+            key={list.id} onClick={() => onProjectClick(list.title,list.img)}
+            style={{flex: `0 0 ${100 / projectMove}%`}}>
               <p className='title'>{list.title}</p>
               <div className="img-wrap">
                 <img src={list.img} alt={list.alt}

@@ -23,37 +23,41 @@
     }
     @include responsive ($breakpoint-medium){
       padding-top: 2rem;
-    }
-    @include responsive($breakpoint-small){
       display: flex;
       flex-direction: column;
     }
+    // @include responsive($breakpoint-small){
+    //   display: flex;
+    //   flex-direction: column;
+    // }
     .profile-wrap{  
       width: 50%;
       // height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      @include responsive($breakpoint-medium){
+        width: 100%;
+        padding: 1rem;
+      }
       .profile{
         width: 70%;
         filter: drop-shadow(5px -10px 20px rgba(255,255,255,0.5)); 
-        @include responsive($breakpoint-small){
-          width: 100%;
-        }
+        // @include responsive($breakpoint-small){
+        //   width: 100%;
+        // }
       }
       p{
         color: $text-color;
-        font-size: 2rem;
+        font-size: 1.5rem;
         border: 1px solid #fff;
+        padding: 5px;
         cursor: pointer;
         &:hover{
           color: $text-point-color;
         }
-        @include responsive($breakpoint-medium){
-          font-size: 1rem;
-        }
         @include responsive($breakpoint-small){
-          display: none;
+          font-size: 13px;
         }
       }
     }
@@ -63,7 +67,7 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      @include responsive ($breakpoint-small){
+      @include responsive ($breakpoint-medium){
         width: 100%;
         text-align: center;
         display: flex;
@@ -72,11 +76,19 @@
       }
       ul{
         color: $text-color;
-        font-size: 2.2rem;
+        font-size: 2rem;
         padding: 2rem;
         width: 100%;
         @include responsive ($breakpoint-large){
           font-size: 1.5rem;
+          padding: 0;
+        }
+        @include responsive ($breakpoint-medium){
+          font-size: 2rem;
+          padding: 0;
+        }
+        @include responsive ($breakpoint-small){
+          font-size: 1rem;
           padding: 0;
         }
         li{
@@ -85,10 +97,6 @@
           }
         }
       }
-      // p{
-      //   color: $text-color;
-      //   font-size: 2rem;
-      // }
       .skill-logo{
         width: 100%;
         display: flex;
@@ -98,7 +106,11 @@
           flex-wrap: wrap;
         }
         @include responsive($breakpoint-medium){
+          width: 70%;
           display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          
         }
         @include responsive($breakpoint-small){
           width: 80%;

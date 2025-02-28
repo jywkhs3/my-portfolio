@@ -44,7 +44,7 @@ const App = () => {
     // console.log("Changing category to:", category);
     setActiveCategory(category);
   }
-
+  
   return (
     <div className="app">
       <NavIcons
