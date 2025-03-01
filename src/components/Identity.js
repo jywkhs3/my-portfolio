@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import profile from '../assets/astro.png';
 import html from '../assets/html.png';
 import css from '../assets/css.png';
@@ -9,6 +9,7 @@ import sass from '../assets/sass.png';
 import ps from '../assets/ps.png';
 import ai from '../assets/ai.png';
 import figma from '../assets/figma.png';
+import gsap from 'gsap';
 
 const Identity = () => {
   const skills = [
@@ -19,16 +20,26 @@ const Identity = () => {
     {id:5, image: vue, alt:'Vue'},
     {id:6, image: sass, alt:'Sass'},
     {id:7, image: ps, alt:'Photoshop'},
-    {id:8, image: ai, alt:'Aillustor'},
+    {id:8, image: ai, alt:'Illustrator'},
     {id:9, image: figma, alt:'Figma'},
   ];
 
+  const profileRef = useRef(null);
+
+  const handleProfile = ()=>{
+    gsap.to(profileRef.current,{
+      rotation:360,
+      duration:1,
+      onComplete:()=> gsap.set(profileRef.current,{rotation:0})
+    });
+  };
   return (
     <div className='identity'>
       <h2>IDENTITY</h2>
       <div className='profile-container'>
         <div className='profile-wrap'>
-          <img className='profile' src={profile} alt='profile'/>
+          <img className='profile' src={profile} alt='profile' ref={profileRef}/>
+          <p onClick={handleProfile}>"Click me!"</p>
         </div>
         <div className='text-wrap'>
           <ul>

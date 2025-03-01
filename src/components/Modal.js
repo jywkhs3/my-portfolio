@@ -5,6 +5,9 @@ import js from '../assets/js.png';
 import react from '../assets/react.png';
 import vue from '../assets/vue.png';
 import sass from '../assets/sass.png';
+import figma from '../assets/figma.png';
+import ps from '../assets/ps.png';
+import ai from '../assets/ai.png';
 
 const projectdetail= [
   {
@@ -50,8 +53,8 @@ const projectdetail= [
   {
     id:8, title:'Login', image: [html,sass,js,react], 
     desc: ['#아이디,비밀번호 입력 검증', '#오류 메시지 표시', '#X버튼 인터렉션 구현', '#UX최적화'], alt:['HTML','Sass','JavaScript','React'],
-    sitelink: '',
-    githublink: ''  },
+    sitelink: 'https://jywkhs3.github.io/netflix_clone/login',
+    githublink: 'https://github.com/jywkhs3/netflix_clone/blob/main/src/components/Login.js'  },
   {
     id:9, title:'Chart', image: [html,sass,js,vue], 
     desc: ['#차트 데이터 시각화', '#동적 데이터 연동', '#ref, watch 활용'], alt:['HTML','Sass','JavaScript','Vue'],
@@ -80,11 +83,31 @@ const projectdetail= [
   {
     id:14, title:'ProgressBar', image: [html,css], 
     desc: ['#ProgressBar ', '#CSS애니메이션', '#UIUX', '#시각적피드백', '#인터랙티브디자인'], alt:['HTML','CSS'],
-    sitelink: 'https://jywkhs3.github.io/animation/progressbar.html',
+    sitelink: 'https://jywkhs3.github.io/animation/MBTI.html',
     githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/tree/main/animation'  },
   {
     id:15, title:'Parallox Scroll', image: [html,css], 
     desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['HTML','CSS'],
+    sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
+    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+  {
+    id:16, title:'Web Design', image: [ps], 
+    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop'],
+    sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
+    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+  {
+    id:17, title:'Mockup', image: [ps], 
+    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop'],
+    sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
+    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+  {
+    id:18, title:'Card News1', image: [ps,ai], 
+    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop','Illustrator'],
+    sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
+    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+  {
+    id:19, title:'Card News2', image: [ps,figma], 
+    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop','Figma'],
     sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
     githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
 ];
