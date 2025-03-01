@@ -13,10 +13,10 @@ h1{
     font-size: 6rem;
     }
   @include responsive($breakpoint-medium){
-    font-size: $subtitle-font-size;
+    font-size: 5rem;
   }
   @include responsive($breakpoint-small){
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 

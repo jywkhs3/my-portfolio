@@ -120,7 +120,9 @@ else if (activeTitle === "INTERACTIONS") {
     if(activeTitle === 'INTERACTIONS'){
       let newIndex = 
         direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
-        console.log(currentIndex);
+        console.log(`currentIndex: ${currentIndex}, 이동값: -${currentIndex * (100 / projectMove)}%`);
+        // console.log(newIndex, totalProjectMove, projectMove);
+        // console.log(currentIndex);
       if (newIndex < 0) {
         newIndex = totalProjectMove - (totalProjectMove % projectMove || projectMove);
       }
@@ -160,7 +162,8 @@ else if (activeTitle === "INTERACTIONS") {
       <div className='project-container'
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
-                transform: `translateX(-${currentIndex * slideWidth}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
+                transform: `translateX(-${currentIndex * slideWidth}%)`,
+                 // 현재 슬라이드 인덱스에 맞춰 이동
                 justifyContent : totalProjectMove <= 4 ? 'center' : 'flex-start',
                 // flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : ''
                 flexWrap: activeCategory === 'ALL' ? 'nowrap' : 'wrap'
@@ -170,7 +173,7 @@ else if (activeTitle === "INTERACTIONS") {
         filteredProjects.map((list,index) => (
           <div className='project-item' 
             key={list.id} onClick={() => onProjectClick(list.title,list.img)}
-            style={{flex: `0 0 ${slideWidth}%`}}>
+            style={{flex: `0 0 ${(100/projectMove)}%`}}>
               <p className='title'>{list.title}</p>
               <div className="img-wrap">
                 <img src={list.img} alt={list.alt}

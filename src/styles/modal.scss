@@ -16,6 +16,9 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0 0 25px 10px rgba(255,255,255,0.3);
+    @include responsive ($breakpoint-small){
+      width: 100%;
+    }
     .img-container{
       position: relative;
       width: 50%;
@@ -54,6 +57,15 @@
       }
       h3{
         font-size: 4.3rem;
+        @include responsive ($breakpoint-large){
+          font-size: 3rem;
+        }
+        @include responsive ($breakpoint-medium){
+          font-size: 2rem;
+        }
+        @include responsive ($breakpoint-small){
+          font-size: 1.6rem;
+        }
       }
       .txt-top{
         display: flex;
@@ -63,8 +75,14 @@
           display: flex;
           gap: 1rem;
           cursor: pointer;
+          @include responsive($breakpoint-small){
+            gap: 5px;
+          }
           .skill-wrap{
             width: 50px;
+            @include responsive ($breakpoint-small){
+              width: 35px;
+            }
             &:hover .text{
               opacity: 1;
             }
@@ -92,17 +110,23 @@
         text-align: center;
         font-family: $text-font;
         font-size: 1.8rem;
+        @include responsive($breakpoint-medium){
+          font-size: 1rem;
+        }
+        @include responsive($breakpoint-small){
+          font-size: 14px;
+        }
         li{
           padding: 0.3rem;
         }
       }
       .btn-wrap{
-        // position: absolute;
-        // left: 50%;
-        // transform: translateX(-50%);
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
         padding-bottom: 1rem;
+        @include responsive ($breakpoint-small){
+          gap: 0.5rem;
+        }
         button{
           @include button-style;
           opacity: 0.5;
