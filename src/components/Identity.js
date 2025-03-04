@@ -52,8 +52,8 @@ const Identity = () => {
           <div className='skill-logo'>
           {
             skills.map((list)=>{
-            return <div className='skill-wrap'>
-                      <img key={list.id} src={list.image} alt={list.alt}/>
+            return <div className='skill-wrap' key={list.id}>
+                      <img  src={list.image} alt={list.alt}/>
                       <p>{list.alt}</p>
                     </div>
           })

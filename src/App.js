@@ -14,6 +14,8 @@ const App = () => {
   const [activeTitle, setActiveTitle] = useState("START"); // 기본값 'CLONE'
   const [selectedImage,setSelectedImage] = useState(null);
   const [activeCategory,setActiveCategory] = useState('ALL');
+  const [modalPosition,setModalPosition] = useState(0); //모달프로젝트 위치
+
   // console.log(selectedImage);
 
   // 메뉴 닫기 아이콘 클릭
@@ -29,10 +31,11 @@ const App = () => {
   };
 
   // 프로젝트 클릭 시 모달 열기
-  const handleModalOpen = (projectTitle,projectImage) => {
+  const handleModalOpen = (projectTitle,projectImage,position) => {
     setActiveProject(projectTitle);
     setIsModalOpen(true);
     setSelectedImage(projectImage);
+    setModalPosition(position);
   };
 
   // 모달 닫기
@@ -70,6 +73,7 @@ const App = () => {
           isModalOpen={isModalOpen}
           onClose={handleModalClose}
           selectedImage={selectedImage}
+          modalPosition={modalPosition}
         />
       )}
       <Background />

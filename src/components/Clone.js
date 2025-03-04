@@ -7,7 +7,7 @@ import blogweb from '../assets/blogweb.png';
 import shopping1 from '../assets/shopping1.png';
 import mobilequiz from '../assets/mobilequiz.png';
 import parallox from '../assets/parallox.png';
-import progressbar from '../assets/progressbar.png';
+// import progressbar from '../assets/progressbar.png';
 import mbtibar from '../assets/progress-bar.png';
 import grid from '../assets/grid.png';
 import login from '../assets/netflix-login.png';
@@ -73,7 +73,7 @@ const projects = {
   }
 };
 
-const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) => {
+const Clone = ({ activeTitle, onProjectClick, activeCategory, onCategoryChange }) => {
   // const filteredProjects = projects[activeTitle] || projects.INTERACTIONS[activeCategory] || [];
   let filteredProjects = [];
 //activeTitle에 맞는 CLONE 또는 PUBLISHING배열 가져오기
@@ -115,12 +115,14 @@ else if (activeTitle === "INTERACTIONS") {
     setCurrentIndex(0);
   },[activeCategory]);
   const totalProjectMove = filteredProjects.length;
-  
+  //프로젝트 슬라이딩
   const handleSlide =(direction)=>{
     if(activeTitle === 'INTERACTIONS'){
       let newIndex = 
         direction === 'next' ? currentIndex + projectMove : currentIndex - projectMove ;
-        console.log(currentIndex);
+        console.log(`currentIndex: ${currentIndex}, 이동값: -${currentIndex * (100 / projectMove)}%`);
+        // console.log(newIndex, totalProjectMove, projectMove);
+        // console.log(currentIndex);
       if (newIndex < 0) {
         newIndex = totalProjectMove - (totalProjectMove % projectMove || projectMove);
       }
@@ -131,6 +133,8 @@ else if (activeTitle === "INTERACTIONS") {
       setCurrentIndex(newIndex);
     }
   }
+  //프로젝트 클릭 시, 위치값
+
 
   return (
     // <div className={`clone ${activeTitle === 'INTERACTIONS' ? 'interactions':''}`} >
@@ -160,7 +164,8 @@ else if (activeTitle === "INTERACTIONS") {
       <div className='project-container'
       // style={filteredProjects.length <4 ? 'justify-content : center' : 'justify-content : flex-start'}
               style={{
-                transform: `translateX(-${currentIndex * (100/projectMove)}%)`, // 현재 슬라이드 인덱스에 맞춰 이동
+                transform: `translateX(-${currentIndex * slideWidth}%)`,
+                 // 현재 슬라이드 인덱스에 맞춰 이동
                 justifyContent : totalProjectMove <= 4 ? 'center' : 'flex-start',
                 // flexWrap : activeTitle === 'INTERACTIONS' ? 'nowrap' : ''
                 flexWrap: activeCategory === 'ALL' ? 'nowrap' : 'wrap'
@@ -169,8 +174,17 @@ else if (activeTitle === "INTERACTIONS") {
         filteredProjects.length > 0 ?(
         filteredProjects.map((list,index) => (
           <div className='project-item' 
-            key={list.id} onClick={() => onProjectClick(list.title,list.img)}
-            style={{flex: `0 0 ${100 / projectMove}%`}}>
+            key={list.id} 
+            onClick={(e) => {
+              // console.log(e.target.parentElement.parentElement.offsetTop);
+              //모달프로젝트 위치값
+              const modalTop = document.documentElement.clientWidth <=768
+              ? e.target.parentElement.parentElement.offsetTop - 50 : null;
+              // const scrollY = window.scrollY;
+              // const modalTop = projectTop - scrollY;
+              // console.log(modalTop);
+              onProjectClick(list.title,list.img,modalTop);}}
+            style={{flex: `0 0 ${(100/projectMove)}%`}}>
               <p className='title'>{list.title}</p>
               <div className="img-wrap">
                 <img src={list.img} alt={list.alt}

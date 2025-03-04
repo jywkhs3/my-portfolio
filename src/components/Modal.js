@@ -92,33 +92,33 @@ const projectdetail= [
     githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
   {
     id:16, title:'Web Design', image: [ps], 
-    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop'],
+    desc: ['#웹디자인', '#UI/UX분석', '#타이포그래피/컬러매칭', '#웹사이트리디자인', '#포토샵'], alt:['Photoshop'],
     sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
-    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+    },
   {
     id:17, title:'Mockup', image: [ps], 
-    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop'],
+    desc: ['#목업디자인', '#포토샵', '#제품/웹디자인'], alt:['Photoshop'],
     sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
-    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+  },
   {
     id:18, title:'Card News1', image: [ps,ai], 
-    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop','Illustrator'],
+    desc: ['#카드뉴스', '#포토샵', '#일러스레이터', '#SNS 및 웹 콘텐츠', '#시각적 디자인'], alt:['Photoshop','Illustrator'],
     sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
-    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+    },
   {
     id:19, title:'Card News2', image: [ps,figma], 
-    desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['Photoshop','Figma'],
+    desc: ['#카드뉴스', '#포토샵', '#SNS 및 웹 콘텐츠', '#시각적 디자인'], alt:['Photoshop','Figma'],
     sitelink: 'https://jywkhs3.github.io/animation/parallax.html',
-    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/parallax.html'  },
+    },
 ];
 
-const Modal = ({selectedImage,activeProject,isModalOpen,onClose}) => {
-  
+const Modal = ({selectedImage,activeProject,isModalOpen,onClose,modalPosition}) => { 
   if(!isModalOpen) return null;
 
   const projectDetailMore = projectdetail.find((list)=>list.title === activeProject);
+  // style={{top :` ${modalPosition}px`, display: onProjectClick ? 'block' : 'none'}}
   return (
-    <div className='modal'>
+    <div className='modal' style={{top: modalPosition !==null ? `${modalPosition}px` : '0' }}>
       <div className='modal-container'>
         <div className='img-container'>
           <img src={selectedImage} alt={activeProject}/>
