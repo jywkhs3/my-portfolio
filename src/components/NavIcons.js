@@ -11,7 +11,7 @@ const navigations = [
   {id:5, name:'INTERACTIONS'}
 ];
 
-const NavIcons = ({isNavShow,toggleNav,onNavigate,closeNav}) => {
+const NavIcons = ({isNavShow,toggleNav,onNavigate,closeNav,toggleMode}) => {
 
   const handleAstro =()=>{
     onNavigate('START');
@@ -24,7 +24,10 @@ const NavIcons = ({isNavShow,toggleNav,onNavigate,closeNav}) => {
   return (
     <div className='nav-container'>
       <div className='nav-icons'>
-        <FontAwesomeIcon icon={faMoon} className='fa moon'  />
+        <FontAwesomeIcon icon={faMoon} 
+          className='fa moon'  
+          onClick={toggleMode}
+        />
         <FontAwesomeIcon icon={faUserAstronaut} className='fa astro' onClick={handleAstro}/>
         <FontAwesomeIcon icon={faRobot} className='fa robot' onClick={toggleNav} />
       </div>

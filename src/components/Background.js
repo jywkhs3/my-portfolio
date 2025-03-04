@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Background = () => {
+const Background = (isLightMode) => {
   const [mousePos, setMousePos] =useState({ x: window.innerWidth/2, y: window.innerHeight/2});
   let [isMouseDown, setIsMouseDown] =useState(false);
   let [lastMousePos, setLastMousePos] =useState({x:0, y:0});
@@ -142,8 +142,25 @@ const Background = () => {
           canvas.removeEventListener('mouseup',handleMouseUp);  
         }
   }, [mousePos , isMouseDown]);
+
+  useEffect(() => {
+    localStorage.setItem('light', JSON.stringify(isLightMode));
+  }, [isLightMode]);
+
+    // // 다크모드 상태를 localStorage에 저장
+    // useEffect(() => {
+    //   localStorage.setItem('light', JSON.stringify(isLightMode));
+    //   const bgStar = document.querySelector('#bg-star-container');
+    //   console.log(bgStar);
+    //   if (isLightMode) {
+    //     bgStar.classList.add('light',isLightMode); // 라이트모드 클래스 추가
+    //   } else {
+    //     bgStar.classList.remove('light',isLightMode); // 라이트모드 클래스 제거
+    //   }
+    // }, [isLightMode]);
+
   return (
-    <div id='bg-star-container'>
+    <div id='bg-star-container' className={isLightMode ? 'light' : ''}>
       <canvas id='bg-star'></canvas>
     </div>
   );
