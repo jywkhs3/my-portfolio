@@ -143,24 +143,15 @@ const Background = (isLightMode) => {
         }
   }, [mousePos , isMouseDown]);
 
-  useEffect(() => {
-    localStorage.setItem('light', JSON.stringify(isLightMode));
-  }, [isLightMode]);
-
-    // // 다크모드 상태를 localStorage에 저장
-    // useEffect(() => {
-    //   localStorage.setItem('light', JSON.stringify(isLightMode));
-    //   const bgStar = document.querySelector('#bg-star-container');
-    //   console.log(bgStar);
-    //   if (isLightMode) {
-    //     bgStar.classList.add('light',isLightMode); // 라이트모드 클래스 추가
-    //   } else {
-    //     bgStar.classList.remove('light',isLightMode); // 라이트모드 클래스 제거
-    //   }
-    // }, [isLightMode]);
-
+    useEffect(() => {
+      const bgStar = document.querySelector("#bg-star-container");
+      if (bgStar) {
+          bgStar.classList.toggle("light");
+        }
+    }, [isLightMode]);
+    
   return (
-    <div id='bg-star-container' className={isLightMode ? 'light' : ''}>
+    <div id='bg-star-container'>
       <canvas id='bg-star'></canvas>
     </div>
   );

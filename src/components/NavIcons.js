@@ -11,7 +11,7 @@ const navigations = [
   {id:5, name:'INTERACTIONS'}
 ];
 
-const NavIcons = ({isNavShow,toggleNav,onNavigate,closeNav,toggleMode}) => {
+const NavIcons = ({onNavigate,isNavShow,toggleNav,closeNav,toggleMode}) => {
 
   const handleAstro =()=>{
     onNavigate('START');

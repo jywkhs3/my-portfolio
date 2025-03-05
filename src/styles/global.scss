@@ -5,11 +5,15 @@
 }
 body{
     font-family: "Saira Stencil One", serif;
+    color: $text-color;
 }
+.body.light{
+    color: $text-light-color;
+}
+
 li{list-style: none;}
 .app{
     height: 100vh;
 }
-body.light{
-    color: #FFAAFF;
-}
+
+

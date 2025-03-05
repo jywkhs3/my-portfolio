@@ -15,22 +15,30 @@ const App = () => {
   const [selectedImage,setSelectedImage] = useState(null);
   const [activeCategory,setActiveCategory] = useState('ALL');
   const [modalPosition,setModalPosition] = useState(0); //모달프로젝트 위치
-  const [isLightMode,setIsLightMode] = useState(false); //화면 라이트 모드
-  
-  //화면 라이트모드 버튼토글 함수
-  const toggleMode = ()=>{
-    setIsLightMode((prevMode => !prevMode));
-  }
-  // App.js에서
+
+  const storedTheme = localStorage.getItem("mode") === "light" ? true : false;
+  const [isLightMode, setIsLightMode] = useState(storedTheme);
+  console.log(storedTheme);
+
+  // 라이트/다크 모드 변경 시 localStorage에 저장
   useEffect(() => {
-    // `light` 클래스가 body에 적용되도록 설정
-    if (isLightMode) {
-      document.body.classList.add('light');
-    } else {
-      document.body.classList.remove('light');
-    }
+    const mode = isLightMode ? 'light' : '';
+    localStorage.setItem("mode", mode);
+    // // body에 light 클래스 토글
+    // document.body.classList.toggle('light', isLightMode);
   }, [isLightMode]);
 
+  //모드 버튼토글 함수
+  const toggleMode = () => {
+    setIsLightMode((prevMode) => !prevMode);
+    // console.log('mode toggle');
+
+  };
+  //메뉴 토글
+  const toggleNav =()=>{
+    setIsNavShow((prevNav) => !prevNav);
+    // console.log('menu toggle');
+  }
   // 메뉴 닫기 아이콘 클릭
   const closeNav = () => {
     setIsNavShow(false);
@@ -62,11 +70,11 @@ const App = () => {
   }
   
   return (
-    <div className={`app ${isLightMode ? 'light':''}`}>
+    <div className='app'>
       <NavIcons
         onNavigate={handleNavigation}
         isNavShow={isNavShow}
-        toggleNav={() => setIsNavShow((prev) => !prev)}
+        toggleNav={toggleNav}
         closeNav={closeNav}
         toggleMode={toggleMode}
       />

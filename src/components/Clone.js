@@ -49,8 +49,8 @@ const projects = {
       { id: 15, title: 'ProgressBar', img: mbtibar, alt: 'progressbar' },
       { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
       { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
-      { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
-      { id: 19, title: 'Card News', img: cardnews2, alt: 'cardnews2' }
+      { id: 18, title: 'Card News1', img: cardnews1, alt: 'cardnews1' },
+      { id: 19, title: 'Card News2', img: cardnews2, alt: 'cardnews2' }
     ],
     JAVASCRIPT: [
       { id: 8, title: 'Login', img: login, alt: 'login' },
