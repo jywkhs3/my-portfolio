@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import gsap from 'gsap';
 
-const Start = ({setShowScrollIcon}) => {
+const Start = ({onTypingFinished}) => {
   const [typingTitle, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [index, setIndex] = useState(0);  // index를 0으로 시작하도록 수정
@@ -25,13 +24,7 @@ const Start = ({setShowScrollIcon}) => {
         // }, 1000); // 1초 후에 텍스트 변경
         setTimeout(()=>{
           if(currentIndex === textTitle.length - 1){
-            setShowScrollIcon(true);
-            // GSAP 애니메이션 추가 (scroll-down 아이콘 등장 효과)
-            gsap.fromTo(
-              '.scroll-down',
-              { opacity: 0, y: -50 },
-              { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-            );
+            onTypingFinished(true);
           }
           setCurrentIndex((prevIndex) => (prevIndex + 1) % textTitle.length); // 텍스트 순차적으로 변경
           setIndex(0); // 새로운 텍스트가 시작되면 index를 0으로 초기화

@@ -8,6 +8,7 @@ import Identity from './components/Identity';
 import Modal from './components/Modal';
 import Video from './components/Video';
 import { SlArrowDown } from "react-icons/sl";
+import gsap from 'gsap';
 
 const App = () => {
   const [isNavShow, setIsNavShow] = useState(false);
@@ -20,6 +21,19 @@ const App = () => {
   const [isLightMode, setIsLightMode] = useState(false); //라이트모드
   const [showVideo,setShowVideo] = useState(false); //비디오컴포넌트 보이기
   const [showScrollIcon, setShowScrollIcon] = useState(false); //스크롤다운아이콘 보이기
+  const [finishTyping,setFinishTyping] = useState(false);
+
+    // 타이핑 애니메이션이 끝났다는 정보를 Start 컴포넌트로 전달받을 때
+    const handleTypingFinished = () => {
+      setFinishTyping(true);
+      setShowScrollIcon(true);
+    };
+  // 타이핑이 끝난 후 .scroll-down에 애니메이션 적용
+  useEffect(() => {
+    if (finishTyping) {
+      gsap.from('.scroll-down', { opacity: 0, y: 20, duration: 1 });
+    }
+  }, [finishTyping]);
 
   // 스크롤 감지 후 비디오보이기
   useEffect(() => {
@@ -93,7 +107,7 @@ const App = () => {
         closeNav={closeNav}
         toggleMode={toggleMode}
       />
-      {activeTitle === 'START' && <Start showScrollIcon={showScrollIcon} setShowScrollIcon={setShowScrollIcon}/>}
+      {activeTitle === 'START' && <Start onTypingFinished={handleTypingFinished}/>}
       {
         showScrollIcon && (
         <div className='scroll-down'>
