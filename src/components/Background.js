@@ -143,6 +143,7 @@ const Background = ({isLightMode}) => {
         }
   }, [mousePos , isMouseDown]);
 
+  //라이트모드 구현> light 클래스 추가/삭제
     useEffect(() => {
       const bgStar = document.querySelector("#bg-star-container");
       // console.log(isLightMode);
@@ -152,10 +153,8 @@ const Background = ({isLightMode}) => {
       }else{
         bgStar.classList.remove('light');
         // console.log('remove light');
-
       }
     }, [isLightMode]);
-
     
   return (
     <div id='bg-star-container'>

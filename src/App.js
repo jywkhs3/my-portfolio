@@ -6,6 +6,8 @@ import Background from './components/Background';
 import Clone from './components/Clone';
 import Identity from './components/Identity';
 import Modal from './components/Modal';
+import Video from './components/Video';
+import { SlArrowDown } from "react-icons/sl";
 
 const App = () => {
   const [isNavShow, setIsNavShow] = useState(false);
@@ -15,10 +17,22 @@ const App = () => {
   const [selectedImage,setSelectedImage] = useState(null);
   const [activeCategory,setActiveCategory] = useState('ALL');
   const [modalPosition,setModalPosition] = useState(0); //모달프로젝트 위치
+  const [isLightMode, setIsLightMode] = useState(false); //라이트모드
+  const [showVideo,setShowVideo] = useState(false); //비디오컴포넌트 보이기
+  const [showScrollIcon, setShowScrollIcon] = useState(false); //스크롤다운아이콘 보이기
 
-  
-  const [isLightMode, setIsLightMode] = useState(false);
+  // 스크롤 감지 후 비디오보이기
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowVideo(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  // 라이트모드 localStorage저장
   useEffect(()=>{
     const storedTheme = localStorage.getItem("mode");
     setIsLightMode(storedTheme);
@@ -27,13 +41,11 @@ const App = () => {
   // 라이트/다크 모드 변경 시 localStorage에 저장
   useEffect(() => {
     localStorage.setItem("mode", isLightMode);
-    // // body에 light 클래스 토글
-    // document.body.classList.toggle('light', isLightMode);
   }, [isLightMode]);
 
   //모드 버튼토글 함수
   const toggleMode = () => {
-    setIsLightMode(!isLightMode);
+    setIsLightMode((prevMode)=> !prevMode);
     // console.log('mode toggle');
 
   };
@@ -81,7 +93,14 @@ const App = () => {
         closeNav={closeNav}
         toggleMode={toggleMode}
       />
-      {activeTitle === 'START' && <Start />}
+      {activeTitle === 'START' && <Start showScrollIcon={showScrollIcon} setShowScrollIcon={setShowScrollIcon}/>}
+      {
+        showScrollIcon && (
+        <div className='scroll-down'>
+          <SlArrowDown/><p>"scroll-down"</p>
+        </div>
+      )}
+      {showVideo && <Video/>}
       {activeTitle === 'IDENTITY' && <Identity />}
       {activeTitle === 'CLONE' && (
         <Clone activeTitle={activeTitle} onProjectClick={handleModalOpen} />
