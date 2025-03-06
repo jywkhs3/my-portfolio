@@ -15,8 +15,5 @@ h1{
   @include responsive($breakpoint-medium){
     font-size: 5rem;
   }
-  @include responsive($breakpoint-small){
-    font-size: 3rem;
-  }
 }
 

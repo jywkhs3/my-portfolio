@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Background = (isLightMode) => {
+const Background = ({isLightMode}) => {
   const [mousePos, setMousePos] =useState({ x: window.innerWidth/2, y: window.innerHeight/2});
   let [isMouseDown, setIsMouseDown] =useState(false);
   let [lastMousePos, setLastMousePos] =useState({x:0, y:0});
@@ -145,10 +145,17 @@ const Background = (isLightMode) => {
 
     useEffect(() => {
       const bgStar = document.querySelector("#bg-star-container");
-      if (bgStar) {
-          bgStar.classList.toggle("light");
-        }
+      // console.log(isLightMode);
+      if (isLightMode) {
+          bgStar.classList.add("light");
+          // console.log('add light');
+      }else{
+        bgStar.classList.remove('light');
+        // console.log('remove light');
+
+      }
     }, [isLightMode]);
+
     
   return (
     <div id='bg-star-container'>

@@ -16,21 +16,24 @@ const App = () => {
   const [activeCategory,setActiveCategory] = useState('ALL');
   const [modalPosition,setModalPosition] = useState(0); //모달프로젝트 위치
 
-  const storedTheme = localStorage.getItem("mode") === "light" ? true : false;
-  const [isLightMode, setIsLightMode] = useState(storedTheme);
-  console.log(storedTheme);
+  
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(()=>{
+    const storedTheme = localStorage.getItem("mode");
+    setIsLightMode(storedTheme);
+  },[]);
 
   // 라이트/다크 모드 변경 시 localStorage에 저장
   useEffect(() => {
-    const mode = isLightMode ? 'light' : '';
-    localStorage.setItem("mode", mode);
+    localStorage.setItem("mode", isLightMode);
     // // body에 light 클래스 토글
     // document.body.classList.toggle('light', isLightMode);
   }, [isLightMode]);
 
   //모드 버튼토글 함수
   const toggleMode = () => {
-    setIsLightMode((prevMode) => !prevMode);
+    setIsLightMode(!isLightMode);
     // console.log('mode toggle');
 
   };
