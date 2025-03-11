@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Background = () => {
+const Background = ({isLightMode}) => {
   const [mousePos, setMousePos] =useState({ x: window.innerWidth/2, y: window.innerHeight/2});
   let [isMouseDown, setIsMouseDown] =useState(false);
   let [lastMousePos, setLastMousePos] =useState({x:0, y:0});
@@ -142,6 +142,20 @@ const Background = () => {
           canvas.removeEventListener('mouseup',handleMouseUp);  
         }
   }, [mousePos , isMouseDown]);
+
+  //라이트모드 구현> light 클래스 추가/삭제
+    useEffect(() => {
+      const bgStar = document.querySelector("#bg-star-container");
+      // console.log(isLightMode);
+      if (isLightMode) {
+          bgStar.classList.add("light");
+          // console.log('add light');
+      }else{
+        bgStar.classList.remove('light');
+        // console.log('remove light');
+      }
+    }, [isLightMode]);
+    
   return (
     <div id='bg-star-container'>
       <canvas id='bg-star'></canvas>

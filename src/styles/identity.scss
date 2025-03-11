@@ -101,6 +101,10 @@
         width: 100%;
         display: flex;
         gap: 1rem;
+        @include responsive ($breakpoint-xlarge){
+          display: flex;
+          flex-wrap: wrap;
+        }
         @include responsive ($breakpoint-large){
           display: flex;
           flex-wrap: wrap;

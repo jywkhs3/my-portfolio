@@ -53,7 +53,7 @@ const projectdetail= [
   {
     id:8, title:'Login', image: [html,sass,js,react], 
     desc: ['#아이디,비밀번호 입력 검증', '#오류 메시지 표시', '#X버튼 인터렉션 구현', '#UX최적화'], alt:['HTML','Sass','JavaScript','React'],
-    sitelink: 'https://jywkhs3.github.io/netflix_clone/login',
+    sitelink: 'https://jywkhs3.github.io/netflix_clone/',
     githublink: 'https://github.com/jywkhs3/netflix_clone/blob/main/src/components/Login.js'  },
   {
     id:9, title:'Chart', image: [html,sass,js,vue], 
@@ -84,7 +84,7 @@ const projectdetail= [
     id:14, title:'ProgressBar', image: [html,css], 
     desc: ['#ProgressBar ', '#CSS애니메이션', '#UIUX', '#시각적피드백', '#인터랙티브디자인'], alt:['HTML','CSS'],
     sitelink: 'https://jywkhs3.github.io/animation/MBTI.html',
-    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/tree/main/animation'  },
+    githublink: 'https://github.com/jywkhs3/jywkhs3.github.io/blob/main/animation/MBTI.html'  },
   {
     id:15, title:'Parallox Scroll', image: [html,css], 
     desc: ['#부드러운UI', '#스크롤링효과', '#CSS애니메이션', '#transform효과'], alt:['HTML','CSS'],
@@ -112,13 +112,13 @@ const projectdetail= [
     },
 ];
 
-const Modal = ({selectedImage,activeProject,isModalOpen,onClose}) => {
-  
+const Modal = ({selectedImage,activeProject,isModalOpen,onClose,modalPosition}) => { 
   if(!isModalOpen) return null;
 
   const projectDetailMore = projectdetail.find((list)=>list.title === activeProject);
+  // style={{top :` ${modalPosition}px`, display: onProjectClick ? 'block' : 'none'}}
   return (
-    <div className='modal'>
+    <div className='modal' style={{top: modalPosition !==null ? `${modalPosition}px` : '0' }}>
       <div className='modal-container'>
         <div className='img-container'>
           <img src={selectedImage} alt={activeProject}/>

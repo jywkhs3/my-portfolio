@@ -7,7 +7,7 @@ import blogweb from '../assets/blogweb.png';
 import shopping1 from '../assets/shopping1.png';
 import mobilequiz from '../assets/mobilequiz.png';
 import parallox from '../assets/parallox.png';
-import progressbar from '../assets/progressbar.png';
+// import progressbar from '../assets/progressbar.png';
 import mbtibar from '../assets/progress-bar.png';
 import grid from '../assets/grid.png';
 import login from '../assets/netflix-login.png';
@@ -49,8 +49,8 @@ const projects = {
       { id: 15, title: 'ProgressBar', img: mbtibar, alt: 'progressbar' },
       { id: 16, title: 'Web Design', img: webdesign, alt: 'webdesign' },
       { id: 17, title: 'Mockup', img: mockup, alt: 'mockup' },
-      { id: 18, title: 'Card News', img: cardnews1, alt: 'cardnews1' },
-      { id: 19, title: 'Card News', img: cardnews2, alt: 'cardnews2' }
+      { id: 18, title: 'Card News1', img: cardnews1, alt: 'cardnews1' },
+      { id: 19, title: 'Card News2', img: cardnews2, alt: 'cardnews2' }
     ],
     JAVASCRIPT: [
       { id: 8, title: 'Login', img: login, alt: 'login' },
@@ -73,7 +73,7 @@ const projects = {
   }
 };
 
-const Clone = ({ activeTitle, onProjectClick,activeCategory,onCategoryChange }) => {
+const Clone = ({ activeTitle, onProjectClick, activeCategory, onCategoryChange }) => {
   // const filteredProjects = projects[activeTitle] || projects.INTERACTIONS[activeCategory] || [];
   let filteredProjects = [];
 //activeTitle에 맞는 CLONE 또는 PUBLISHING배열 가져오기
@@ -115,7 +115,7 @@ else if (activeTitle === "INTERACTIONS") {
     setCurrentIndex(0);
   },[activeCategory]);
   const totalProjectMove = filteredProjects.length;
-  
+  //프로젝트 슬라이딩
   const handleSlide =(direction)=>{
     if(activeTitle === 'INTERACTIONS'){
       let newIndex = 
@@ -133,6 +133,8 @@ else if (activeTitle === "INTERACTIONS") {
       setCurrentIndex(newIndex);
     }
   }
+  //프로젝트 클릭 시, 위치값
+
 
   return (
     // <div className={`clone ${activeTitle === 'INTERACTIONS' ? 'interactions':''}`} >
@@ -172,7 +174,16 @@ else if (activeTitle === "INTERACTIONS") {
         filteredProjects.length > 0 ?(
         filteredProjects.map((list,index) => (
           <div className='project-item' 
-            key={list.id} onClick={() => onProjectClick(list.title,list.img)}
+            key={list.id} 
+            onClick={(e) => {
+              // console.log(e.target.parentElement.parentElement.offsetTop);
+              //모달프로젝트 위치값
+              const modalTop = document.documentElement.clientWidth <=768
+              ? e.target.parentElement.parentElement.offsetTop - 50 : null;
+              // const scrollY = window.scrollY;
+              // const modalTop = projectTop - scrollY;
+              // console.log(modalTop);
+              onProjectClick(list.title,list.img,modalTop);}}
             style={{flex: `0 0 ${(100/projectMove)}%`}}>
               <p className='title'>{list.title}</p>
               <div className="img-wrap">

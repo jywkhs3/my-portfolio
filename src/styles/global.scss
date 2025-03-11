@@ -3,10 +3,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+li{list-style: none;}
+
 body{
     font-family: "Saira Stencil One", serif;
+    color: $text-color;
 }
-li{list-style: none;}
+.body.light{
+    color: $text-light-color;
+}
+
+
 .app{
     height: 100vh;
+    position: relative;
 }
+
+

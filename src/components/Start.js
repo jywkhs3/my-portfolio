@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-const Start = () => {
+const Start = ({onTypingFinished}) => {
   const [typingTitle, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [index, setIndex] = useState(0);  // index를 0으로 시작하도록 수정
-  const textTitle = ['WELCOME', 'HYUN PORTFOLIO'];
+  const textTitle = ['WELCOME','HYUN PORTFOLIO'];
 
   useEffect(() => {
-    const typingSpeed = 300; // 타이핑 속도 (300ms)
+    const typingSpeed = 200; // 타이핑 속도 (300ms)
     let time; // 타이머 변수
 
     const typingAnimation = () => {
@@ -17,11 +17,19 @@ const Start = () => {
         setIndex((prevIndex) => prevIndex + 1); // 인덱스 증가
       } else {
         clearInterval(time); // 타이머 멈춤
-        setTimeout(() => {
+        // setTimeout(() => {
+        //   setCurrentIndex((prevIndex) => (prevIndex + 1) % textTitle.length); // 텍스트 순차적으로 변경
+        //   setIndex(0); // 새로운 텍스트가 시작되면 index를 0으로 초기화
+        //   setDisplayText(''); // 새로운 텍스트가 시작되면 화면을 초기화
+        // }, 1000); // 1초 후에 텍스트 변경
+        setTimeout(()=>{
+          if(currentIndex === textTitle.length - 1){
+            onTypingFinished(true);
+          }
           setCurrentIndex((prevIndex) => (prevIndex + 1) % textTitle.length); // 텍스트 순차적으로 변경
           setIndex(0); // 새로운 텍스트가 시작되면 index를 0으로 초기화
           setDisplayText(''); // 새로운 텍스트가 시작되면 화면을 초기화
-        }, 1000); // 1초 후에 텍스트 변경
+        },700);
       }
     };
 
