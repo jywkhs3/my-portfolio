@@ -100,7 +100,6 @@ const App = () => {
     setIsModalOpen(true);
     setSelectedImage(projectImage);
     setModalPosition(position);
-
   };
 
   // 모달 닫기

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useRef } from 'react';
 import html from '../assets/html.png';
 import css from '../assets/css.png';
 import js from '../assets/js.png';
@@ -8,6 +8,7 @@ import sass from '../assets/sass.png';
 import figma from '../assets/figma.png';
 import ps from '../assets/ps.png';
 import ai from '../assets/ai.png';
+import gsap from 'gsap';
 
 const projectdetail= [
   {
@@ -113,13 +114,22 @@ const projectdetail= [
 ];
 
 const Modal = ({selectedImage,activeProject,isModalOpen,onClose,modalPosition}) => { 
-  if(!isModalOpen) return null;
-
+  const modalRef = useRef(null);
   const projectDetailMore = projectdetail.find((list)=>list.title === activeProject);
-  // style={{top :` ${modalPosition}px`, display: onProjectClick ? 'block' : 'none'}}
+  useEffect(()=>{
+    if(isModalOpen) {
+      gsap.fromTo(
+        modalRef.current,
+        {opacity:0, y: -50, scale:0.8},
+        {opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out"}
+      );
+    }
+  },[isModalOpen]);
+
+  if(!isModalOpen) return null;
   return (
     <div className='modal' style={{top: modalPosition !==null ? `${modalPosition}px` : '0' }}>
-      <div className='modal-container'>
+      <div className='modal-container' ref={modalRef}>
         <div className='img-container'>
           <img src={selectedImage} alt={activeProject}/>
         </div>
