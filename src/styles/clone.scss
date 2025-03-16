@@ -1,0 +1,167 @@
+.clone{
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    h2{
+        font-size: $subtitle-font-size;
+        text-align: center;
+        @include responsive($breakpoint-medium){
+            font-size: 4rem;
+        }
+        @include responsive($breakpoint-small){
+            font-size: 2.5rem;
+        }
+    }
+    .interactions-nav{
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 1.5rem;
+        padding: 1rem 0;
+        @include responsive ($breakpoint-medium){
+            gap: 1rem;
+        }
+        @include responsive ($breakpoint-small){
+            font-size: 0.8rem;  
+            gap: 0.2rem; 
+        }
+        span{
+            cursor: pointer;
+            border: 2px solid #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            @include responsive ($breakpoint-small){
+                padding: 0.5rem;
+            }
+            &:hover{
+                background-color: rgba(255,255,255,0.3);
+                color: $text-point-color;
+            }
+        }
+        .on{
+            color: $text-point-color;
+            background-color: rgba(255,255,255,0.3);
+    
+        }
+    }
+
+    .project-container{
+        width: 100%;
+        // padding-top: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        transition: transform 0.5s ease-in-out;
+        // gap: 1rem;
+        @include responsive($breakpoint-xlarge){
+            display: flex;
+            justify-content: center;
+        }
+        @include responsive($breakpoint-large){
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @include responsive($breakpoint-medium){
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+        @include responsive($breakpoint-small){
+            // gap: 1rem;
+        }
+        &.nowrap{
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .project-item{
+            flex-basis: 25%;
+            // width: calc(100%/4);
+            // max-width: 25vw;
+            // min-width: calc(100%/4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            @include responsive($breakpoint-xlarge){
+                flex-basis: 20%;
+            }
+            @include responsive($breakpoint-large){
+                flex-basis: 30%;
+            }
+            @include responsive($breakpoint-medium){
+                flex-basis: 50%;
+            }
+            @include responsive($breakpoint-small){
+                flex-basis: 100%;            }
+            &:hover{
+                color: $text-point-color;
+                img{
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+            }
+            &:hover .read{
+                opacity: 1;
+            }
+            .title{
+                font-size: 3rem;
+                @include responsive ($breakpoint-xlarge){
+                    font-size: 1.5rem;
+                }
+            }
+            .img-wrap{
+                // width: 100%;
+                // height: auto;
+                width: 300px;
+                height: 300px;
+                border: 1px solid #fff;
+                border-radius: 10px;
+                img{
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .read{
+                color: $text-color;
+                position: absolute;
+                font-size: 1.3rem;
+                text-decoration: underline;
+                top: 60%;
+                transform: translateY(-60%);
+                opacity: 0;
+
+            }
+        }
+
+    }
+    
+    .slider-nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 65%;
+        font-size: 3rem;
+        color: rgba(255,255,255,0.3);
+        .prev, .next{
+            cursor: pointer;
+            &:hover{
+                color: #fff;
+            }
+        }
+    }
+    .click-txt{
+        color: $text-point-color;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: 33%;
+        left: 8%;
+        // display: none;
+    }
+}    
+
